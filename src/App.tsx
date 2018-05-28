@@ -3,7 +3,7 @@
  * https://github.com/facebook/react-native
  */
 
-import React, { Component } from 'react';
+import React = require('react')
 import {
     Platform,
     StyleSheet,
@@ -19,7 +19,7 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class App extends Component<Props> {
+export default class App extends React.Component<Props> {
     render() {
         return (
             <View style={styles.container}>
