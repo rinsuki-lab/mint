@@ -11,8 +11,14 @@ import {
     View,
     AsyncStorage,
     StatusBar,
+    ScrollView,
+    TouchableWithoutFeedback,
 } from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome"
+import { HamburgerMenu } from './HamburgerMenu';
+import { store } from './store';
+import { observer } from 'mobx-react/native';
+import { ModalBackground } from './ModalBackground';
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' +
@@ -22,6 +28,8 @@ const instructions = Platform.select({
 });
 
 type Props = {};
+
+@observer
 export default class App extends React.Component<Props> {
 
     componentDidMount() {
@@ -31,14 +39,18 @@ export default class App extends React.Component<Props> {
         const iconColor="rgba(255, 255, 255, 0.9)"
 
         return (
-            <View style={styles.container}>
+            <View style={{
+                flex: 1,
+            }}>
                 <View style={styles.main}>
                     <Text>mainView</Text>
                 </View>
                 <View style={styles.bottomBar}>
-                    <View style={styles.bottomBarIconContainer}>
+                    <TouchableWithoutFeedback onPress={e => {
+                        store.openMenu()
+                    }}><View style={styles.bottomBarIconContainer}>
                         <Icon name="bars" size={24} color={iconColor}/>
-                    </View>
+                    </View></TouchableWithoutFeedback>
                     <View style={{
                         flex: 1,
                         borderLeftColor: "rgba(0, 0, 0, 0.1)",
@@ -54,15 +66,24 @@ export default class App extends React.Component<Props> {
                         <Icon name="pencil" size={24} color={iconColor}/>
                     </View>
                 </View>
+                <ModalBackground show={store.isOpenMenu} style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    zIndex: 99,
+                    backgroundColor: "rgba(0, 0, 0, 0.2)",
+                }}/>
+                <HamburgerMenu>
+                    <Text>are</Text>
+                </HamburgerMenu>
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
     main: {
         backgroundColor: "#fafafa",
         flex: 1,
