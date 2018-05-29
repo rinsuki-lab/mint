@@ -5,9 +5,11 @@ import {
     TouchableWithoutFeedback,
     Text,
 } from "react-native"
-import SafeAreaView from "react-native-safe-area-view"
+// はよマージしろ
+// https://github.com/react-community/react-native-safe-area-view/pull/25
+const SafeAreaView = require("react-native-safe-area-view").default
 import { observer } from "mobx-react/native"
-import { store } from "./store";
+import { store } from "../../store";
 
 @observer
 export class HamburgerMenu extends React.Component {

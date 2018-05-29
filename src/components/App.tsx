@@ -15,10 +15,10 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome"
-import { HamburgerMenu } from './HamburgerMenu';
-import { store } from './store';
+import { HamburgerMenu } from './common/HamburgerMenu';
+import { store } from '../store';
 import { observer } from 'mobx-react/native';
-import { ModalBackground } from './ModalBackground';
+import { ModalBackground } from './common/ModalBackground';
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' +
